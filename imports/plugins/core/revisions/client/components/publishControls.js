@@ -88,7 +88,11 @@ class PublishControls extends Component {
   renderChanges() {
     if (this.showDiffs) {
       const diffs = this.props.revisions.map((revision) => {
-        return <SimpleDiff diff={revision.diff} key={revision._id} />;
+        return <SimpleDiff
+          diff={revision.diff}
+          key={revision._id}
+          tags={this.props.tags}
+        />;
       });
 
       return (
@@ -144,6 +148,7 @@ PublishControls.propTypes = {
   isEnabled: PropTypes.bool,
   onPublishClick: PropTypes.func,
   revisions: PropTypes.arrayOf(PropTypes.object),
+  tags: PropTypes.arrayOf(PropTypes.object),
   translation: PropTypes.shape({
     lang: PropTypes.string
   })

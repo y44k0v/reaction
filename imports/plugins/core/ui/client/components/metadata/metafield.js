@@ -74,7 +74,7 @@ class Metafield extends Component {
    * @return {JSX} metadata forms for each row of metadata
    */
   render() {
-    if (this.props.metafield) {
+    if (this.props.metafield && this.props.editable) {
       return (
         <div className="rui list-group-item metafield-list-item">
           <form className="form form-inline" onSubmit={this.handleSubmit}>
@@ -102,6 +102,13 @@ class Metafield extends Component {
           </form>
         </div>
       );
+    } else if (this.props.metafield) {
+      return (
+        <div className="rui meta-item">
+          <div className="rui meta-key">{this.props.metafield.key}</div>
+          <div className="rui meta-value">{this.props.metafield.value}</div>
+        </div>
+      );
     }
     return null;
   }
@@ -116,6 +123,7 @@ Metafield.propTypes = {
   blank: PropTypes.bool,
   detailInfoPlaceholder: PropTypes.func,
   detailNamePlaceholder: PropTypes.func,
+  editable: PropTypes.bool,
   i18nKeyDetailInfo: PropTypes.func,
   i18nKeyDetailName: PropTypes.func,
   index: PropTypes.number,
