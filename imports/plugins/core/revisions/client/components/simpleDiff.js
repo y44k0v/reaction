@@ -221,7 +221,7 @@ class SimpleDiff extends Component {
               <div className="col-sm-4" >
                 {this.renderPath(change.path)}
                 <div className="badge badge-warning">
-                  <Translation defaultValue="Changed" />
+                  <Translation defaultValue="Modified" />
                 </div>
               </div>
               <div className="col-sm-4" style={{whiteSpace: "normal"}}>
