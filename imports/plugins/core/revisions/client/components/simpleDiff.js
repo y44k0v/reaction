@@ -4,7 +4,6 @@ import { Metafield, TagItem, Currency } from "/imports/plugins/core/ui/client/co
 import JsDiff from "diff";
 import isDate from "lodash/isdate";
 import merge from "lodash/merge";
-import mergeWith from "lodash/mergewith";
 
 class SimpleDiff extends Component {
   renderPath(path) {
@@ -109,8 +108,8 @@ class SimpleDiff extends Component {
     }
 
 
-    if (typeof change[side] === "string") {
-      const diff = JsDiff.diffChars(leftHandSide, rightHandSide);
+    if (typeof change[side] === "string" && side === "rhs") {
+      const diff = JsDiff.diffWords(leftHandSide, rightHandSide);
 
       return diff.map((part) => {
         let style = {};
@@ -122,7 +121,7 @@ class SimpleDiff extends Component {
           };
         } else if (part.removed) {
           style = {
-            backgroundColor: "#5cb85c",
+            backgroundColor: "#d9534f",
             color: "#fff"
           };
         }
@@ -134,6 +133,8 @@ class SimpleDiff extends Component {
         );
       });
     }
+
+    return change[side];
   }
 
   renderDiff() {
@@ -258,7 +259,7 @@ class SimpleDiff extends Component {
                 </div>
               </div>
               <div className="col-sm-4" style={{whiteSpace: "normal"}}>
-                {this.renderTextDiff(change)}
+                {this.renderTextDiff(change, "rhs")}
               </div>
             </div>
           );
@@ -268,7 +269,7 @@ class SimpleDiff extends Component {
           return (
             <div className="row danger" key={index}>
               <div className="col-sm-4" style={{whiteSpace: "normal"}}>{leftHandSide}</div>
-              <div className="col-sm-4"><i className="fa fa-times"></i>
+              <div className="col-sm-4"><i className="fa fa-times" />
                 {this.renderPath(change.path)}
                 <div className="badge badge-danger">
                   <Translation defaultValue="Removed" />
