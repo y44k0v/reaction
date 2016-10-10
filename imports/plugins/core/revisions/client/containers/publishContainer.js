@@ -99,8 +99,6 @@ function composer(props, onData) {
             $in: tagIds
           }
         }).fetch();
-        console.log("would be tags??", tags);
-
       }
 
       onData(null, {
