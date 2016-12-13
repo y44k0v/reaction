@@ -1,5 +1,14 @@
 import React, { Component, PropTypes } from "react";
+import {
+  Button,
+  DropDownMenu,
+  MenuItem,
+  Translation,
+  Toolbar,
+  ToolbarGroup
+} from "/imports/plugins/core/ui/client/components/";
 import { AlertContainer } from "/imports/plugins/core/ui/client/containers";
+import { PublishContainer } from "/imports/plugins/core/revisions";
 import { ReactionLayout } from "/imports/plugins/core/layout/lib";
 
 class ProductDetail extends Component {
@@ -27,19 +36,42 @@ class ProductDetail extends Component {
     }
   }
 
+  renderToolbar() {
+    if (this.props.hasAdminPermission) {
+      return (
+        <Toolbar>
+          <ToolbarGroup firstChild={true}>
+            <Translation defaultValue="Product Management" i18nKey="productDetail.productManagement"/>
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <DropDownMenu
+              buttonElement={<Button label="Switch" />}
+              onChange={this.props.onViewContextChange}
+              value={this.props.viewAs}
+            >
+              <MenuItem label="Administrator" value="administrator" />
+              <MenuItem label="Customer" value="customer" />
+            </DropDownMenu>
+          </ToolbarGroup>
+          <ToolbarGroup lastChild={true}>
+            <PublishContainer
+              documentIds={[this.product._id]}
+              documents={[this.product]}
+              onVisibilityChange={this.handleVisibilityChange}
+              onAction={this.handlePublishActions}
+            />
+          </ToolbarGroup>
+        </Toolbar>
+      );
+    }
+
+    return null;
+  }
+
   render() {
     return (
       <div className="pdp" style={{ position: "relative" }}>
-        <div className="container container-main pdp-container" itemScope itemType="http://schema.org/Product">
-          <div className="row">
-            <AlertContainer placement="productManagement" />
-            <ReactionLayout
-              context={this}
-              layoutName={this.props.layout}
-              layoutProps={this.props}
-            />
-          </div>
-        </div>
+        {this.renderToolbar()}
       </div>
     );
   }

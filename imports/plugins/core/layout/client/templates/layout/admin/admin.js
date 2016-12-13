@@ -4,6 +4,7 @@ import { Blaze } from "meteor/blaze";
 import { Template } from "meteor/templating";
 import { Reaction, i18next } from "/client/api";
 import { Packages } from "/lib/collections";
+import { AdminContainer } from "../../../containers";
 
 Template.coreAdminLayout.onRendered(function () {
   $("body").addClass("admin");
@@ -14,6 +15,13 @@ Template.coreAdminLayout.onDestroyed(() => {
 });
 
 Template.coreAdminLayout.helpers({
+  AdminComponent() {
+    return {
+      component: AdminContainer,
+      data: Template.currentData()
+    };
+  },
+
   shortcutButtons() {
     const instance = Template.instance();
     const shortcuts = Reaction.Apps({ provides: "shortcut", enabled: true });
@@ -131,21 +139,3 @@ Template.coreAdminLayout.helpers({
     return reactionApp;
   }
 });
-
-// Template.coreAdminLayout.events({   /**
-//    * Submit sign up form
-//    * @param  {Event} event - jQuery Event
-//    * @param  {Template} template - Blaze Template
-//    * @return {void}    */   "click .admin-controls-quicklinks a, click .admin-controls-quicklinks button"(event) {
-//  if (this.name === "createProduct") {       event.preventDefault();       event.stopPropagation();
-//
-//       if (!this.dropInstance) {         this.dropInstance = new Drop({           target: event.target,
-// content: "",           constrainToWindow: true,           classes: "drop-theme-arrows",           position: "right
-// center"         });
-//
-//         Blaze.renderWithData(Template.createContentMenu, {}, this.dropInstance.content);       }
-//
-//       this.dropInstance.open();     } else if (this.route) {       event.preventDefault();
-// event.stopPropagation();
-//
-//       Reaction.Router.go(this.name);     }   } });

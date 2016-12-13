@@ -139,7 +139,7 @@ class Button extends Component {
     const extraProps = {};
 
     if (tagName === "a") {
-      extraProps.href = "#";
+      extraProps.href = attrs.href || "#";
     }
 
     const buttonProps = Object.assign({
