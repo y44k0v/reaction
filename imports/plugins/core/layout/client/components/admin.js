@@ -15,12 +15,6 @@ class AdminView extends Component {
     data: PropTypes.object
   }
 
-  /*
-  <ReactionLayout
-
-  />
-   */
-
   render() {
     const pageClassName = classnames({
       "page": true,

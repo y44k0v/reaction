@@ -12,7 +12,7 @@ class QuickMenu extends Component {
       return this.props.buttons.map((buttonProps, index) => {
         if (buttonProps.type === "seperator") {
           return (
-            <div class="rui separator padding xs">
+            <div className="rui separator padding xs">
               <hr />
             </div>
           )
@@ -32,10 +32,9 @@ class QuickMenu extends Component {
   }
 
   render() {
-    console.log("buttons", this.props.buttons);
     return (
-      <div className="admin-controls-menu">
-        <nav className="admin-controls-quicklinks">
+      <div className="rui toolbar toolbar-vertical admin-controls-menu">
+        <nav className="rui toolbar-group admin-controls-quicklinks">
           {this.renderButtons()}
         </nav>
       </div>

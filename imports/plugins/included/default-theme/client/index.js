@@ -2,7 +2,7 @@
 import "./favicons";
 
 // Styles
-import "./styles/main.less";
+// import "./styles/main.less";
 
 // Scripts
 import "bootstrap/dist/js/npm.js";

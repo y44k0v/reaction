@@ -3,7 +3,7 @@ import Blaze from "meteor/gadicc:blaze-react-component";
 
 class Header extends Component {
   static propTypes = {
-    template: PropTypes.object
+    template: PropTypes.string
   }
 
   render() {
