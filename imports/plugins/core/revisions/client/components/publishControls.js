@@ -177,7 +177,7 @@ class PublishControls extends Component {
             disabled={this.hasChanges === false}
             label="Publish Changes"
             onClick={this.handlePublishClick}
-            status="success"
+            status="primary"
             tooltip={"This product has changes that need to be published before they are visible to your customers."}
             i18nKeyLabel="app.publishChanges"
           />

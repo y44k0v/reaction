@@ -102,8 +102,10 @@ Meteor.startup(() => {
 
             // apply language direction to html
             if (i18next.dir(language) === "rtl") {
+              $("html").attr("dir", "rtl");
               return $("html").addClass("rtl");
             }
+            $("html").removeAttr("dir");
             return $("html").removeClass("rtl");
           });
       }); // return

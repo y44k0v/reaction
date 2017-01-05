@@ -7,11 +7,11 @@ import { Packages } from "/lib/collections";
 import { AdminContainer } from "../../../containers";
 
 Template.coreAdminLayout.onRendered(function () {
-  $("body").addClass("admin");
+  $("body").addClass("admin rui-admin");
 });
 
 Template.coreAdminLayout.onDestroyed(() => {
-  $("body").removeClass("admin");
+  $("body").removeClass("admin rui-admin");
 });
 
 Template.coreAdminLayout.helpers({
