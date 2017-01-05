@@ -13,7 +13,7 @@ export { Translation, Currency } from "./translation";
 export { default as Tooltip } from "./tooltip/tooltip";
 export { Metadata, Metafield } from "./metadata";
 export { TagList, TagItem } from "./tags";
-export { Card, CardHeader, CardBody, CardGroup, CardTitle } from "./cards";
+export { Card, CardHeader, CardBody, CardGroup, CardTitle, CardActions } from "./cards";
 export { MediaGallery, MediaItem } from "./media";
 export { default as FlatButton } from "./button/flatButton";
 export { default as SortableTable } from "./table/table";
