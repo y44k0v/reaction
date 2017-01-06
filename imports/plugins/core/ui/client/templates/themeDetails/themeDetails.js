@@ -1,5 +1,9 @@
 import { Reaction, Router, i18next } from "/client/api";
 import { Themes } from "/lib/collections";
+import { ThemeEditorContainer } from "../../containers";
+import ThemeToolbar from "./themeToolbar";
+import ThemeComponents from "./themeComponents";
+
 
 Template.uiThemeDetails.onCreated(function () {
   this.state = new ReactiveDict();
@@ -36,6 +40,11 @@ Template.uiThemeDetails.onRendered(function () {
 });
 
 Template.uiThemeDetails.helpers({
+  ThemeComponent() {
+    return {
+      component: ThemeEditorContainer(ThemeComponents)
+    };
+  },
   activeClassName(componentName) {
     if (Template.instance().state.equals("selectedComponent", componentName)) {
       return "active";
@@ -86,4 +95,12 @@ Template.uiThemeDetails.events({
     });
   }
 
+});
+
+Template.uiThemeDashboardHeader.helpers({
+  ThemeToolbarComponent() {
+    return {
+      component: ThemeEditorContainer(ThemeToolbar)
+    };
+  }
 });

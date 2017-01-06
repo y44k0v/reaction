@@ -1,3 +1,5 @@
 import { Reaction } from "/server/api";
 
-Reaction.registerTheme(Assets.getText("themes/button.css"));
+export function registerThemeComponents() {
+  Reaction.registerTheme(Assets.getText("themes/core-ui/button.css"));
+}

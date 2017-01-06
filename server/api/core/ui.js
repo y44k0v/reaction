@@ -3,7 +3,7 @@ import postcssJS from "postcss-js";
 import autoprefixer from "autoprefixer";
 import cssAnnotation from "css-annotation";
 import { Shops, Themes } from "/lib/collections";
-import { Reaction } from "./core";
+import Reaction from "./core";
 
 const prefixer = postcssJS.sync([autoprefixer]);
 
