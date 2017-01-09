@@ -1,5 +1,7 @@
 import { Router } from "/client/api";
 import { Themes } from "/lib/collections";
+import { ThemeEditorContainer } from "../../containers";
+import ThemeEditor from "./themeEditor.react"
 
 Template.uiThemeEditor.onCreated(function () {
   this.state = new ReactiveDict();
@@ -69,6 +71,12 @@ Template.uiThemeEditor.onCreated(function () {
 
 
 Template.uiThemeEditor.helpers({
+  ThemeEdtiorComponent() {
+    return {
+      component: ThemeEditorContainer(ThemeEditor)
+    }
+  },
+
   component() {
     const instance = Template.instance();
     const theme = instance.state.get("theme");
@@ -129,43 +137,43 @@ Template.uiThemeEditor.helpers({
 });
 
 Template.uiThemeEditor.events({
-  "mouseover [data-rule]"(event) {
-    const selector = event.currentTarget.dataset.selector;
-
-    $(selector).css({
-      boxShadow: "0 0 5px 2px #00dcdd"
-    });
-  },
-
-  "mouseout [data-rule]"(event) {
-    const selector = event.currentTarget.dataset.selector;
-    $(selector).css({
-      boxShadow: "none"
-    });
-  },
-
-
-  "input input"(event, instance) {
-    const selector = $(event.target).closest("[data-selector]").attr("data-selector");
-    const property = event.target.name;
-    const value = event.target.value;
-    const theme = instance.state.get("theme");
-    const component = instance.state.get("selectedComponent");
-    const styles = instance.state.get("styles");
-
-    styles[selector][property] = value;
-
-    // Update style value
-    const data = {
-      theme,
-      component,
-      styles
-    };
-
-    Meteor.call("ui/updateStyles", data, (error) => {
-      if (error) {
-        Alerts.toast(`Couldn't update theme ${theme.name}`);
-      }
-    });
-  }
+  // "mouseover [data-rule]"(event) {
+  //   const selector = event.currentTarget.dataset.selector;
+  //
+  //   $(selector).css({
+  //     boxShadow: "0 0 5px 2px #00dcdd"
+  //   });
+  // },
+  //
+  // "mouseout [data-rule]"(event) {
+  //   const selector = event.currentTarget.dataset.selector;
+  //   $(selector).css({
+  //     boxShadow: "none"
+  //   });
+  // },
+  //
+  //
+  // "input input"(event, instance) {
+  //   const selector = $(event.target).closest("[data-selector]").attr("data-selector");
+  //   const property = event.target.name;
+  //   const value = event.target.value;
+  //   const theme = instance.state.get("theme");
+  //   const component = instance.state.get("selectedComponent");
+  //   const styles = instance.state.get("styles");
+  //
+  //   styles[selector][property] = value;
+  //
+  //   // Update style value
+  //   const data = {
+  //     theme,
+  //     component,
+  //     styles
+  //   };
+  //
+  //   Meteor.call("ui/updateStyles", data, (error) => {
+  //     if (error) {
+  //       Alerts.toast(`Couldn't update theme ${theme.name}`);
+  //     }
+  //   });
+  // }
 });
