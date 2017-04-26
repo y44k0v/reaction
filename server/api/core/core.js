@@ -236,58 +236,6 @@ export default {
     return Packages.findOne(query);
   },
 
-  /**
-   * Add default roles for new visitors
-   * @param {String|Array} roles - A string or array of roles and routes
-   * @returns {undefined} - does not specifically return anything
-   */
-  addDefaultRolesToVisitors(roles) {
-    Logger.info(`Adding defaultRoles & defaultVisitorRole permissions for ${roles}`);
-
-    const shop = Shops.findOne(this.getShopId());
-
-    if (Match.test(roles, [String])) {
-      Shops.update(shop._id, {
-        $addToSet: { defaultVisitorRole: { $each: roles } }
-      });
-      Shops.update(shop._id, {
-        $addToSet: { defaultRoles: { $each: roles } }
-      });
-    } else if (Match.test(roles, String)) {
-      Shops.update(shop._id, {
-        $addToSet: { defaultVisitorRole: roles }
-      });
-      Shops.update(shop._id, {
-        $addToSet: { defaultRoles: roles }
-      });
-    } else {
-      throw new Meteor.Error(`Failed to add default roles ${roles}`);
-    }
-  },
-
-  /**
-   * Add default roles for new sellers
-   * @param {String|Array} roles A string or array of roles and routes
-   * @returns {undefined} - does not specifically return anything
-   */
-  addDefaultRolesToSellers(roles) {
-    Logger.info(`Adding defaultSellerRoles permissions for ${roles}`);
-
-    const shop = Shops.findOne(this.getShopId());
-
-    if (Match.test(roles, [String])) {
-      Shops.update(shop._id, {
-        $addToSet: { defaultSellerRole: { $each: roles } }
-      });
-    } else if (Match.test(roles, String)) {
-      Shops.update(shop._id, {
-        $addToSet: { defaultSellerRole: roles }
-      });
-    } else {
-      throw new Meteor.Error(`Failed to add default seller roles ${roles}`);
-    }
-  },
-
   getAppVersion() {
     return Shops.findOne().appVersion;
   },
