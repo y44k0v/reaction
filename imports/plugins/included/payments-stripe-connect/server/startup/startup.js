@@ -4,6 +4,6 @@ Hooks.Events.add("afterCoreInit", () => {
   Reaction.addRolesToDefaultRoleSet({
     allShops: true,
     roleSets: ["defaultRoles", "defaultVisitorRole", "defaultSellerRoles"],
-    roles: ["stripe-connect-redirect", "test-role33"]
+    roles: ["stripe-connect-redirect"]
   });
 });
