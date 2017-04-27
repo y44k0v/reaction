@@ -2,12 +2,12 @@
 import { Template } from "meteor/templating";
 import { Packages } from "/lib/collections";
 import { i18next } from "/client/api";
-import { PaypalPackageConfig } from "../../../lib/collections/schemas";
+import { PaypalExpressPackageConfig } from "../../../lib/collections/schemas";
 import "./express.html";
 
 Template.paypalExpressSettings.helpers({
-  PaypalPackageConfig: function () {
-    return PaypalPackageConfig;
+  PaypalExpressPackageConfig: function () {
+    return PaypalExpressPackageConfig;
   },
   packageData: function () {
     return Packages.findOne({

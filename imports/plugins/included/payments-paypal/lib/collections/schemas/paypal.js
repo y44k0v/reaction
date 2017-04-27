@@ -1,41 +1,8 @@
 import { SimpleSchema } from "meteor/aldeed:simple-schema";
 import { PackageConfig } from "/lib/collections/schemas/registry";
 
-export const PaypalPackageConfig = new SimpleSchema([
+export const PaypalProPackageConfig = new SimpleSchema([
   PackageConfig, {
-    "settings.express_auth_and_capture": {
-      type: Boolean,
-      label: "Capture at time of Auth",
-      defaultValue: false
-    },
-    "settings.merchantId": {
-      type: String,
-      label: "Merchant ID",
-      optional: true
-    },
-    "settings.username": {
-      type: String,
-      label: "Username",
-      optional: true
-    },
-    "settings.password": {
-      type: String,
-      label: "Password",
-      optional: true
-    },
-    "settings.signature": {
-      type: String,
-      label: "Signature",
-      optional: true
-    },
-    "settings.express_mode": {
-      type: Boolean,
-      defaultValue: false
-    },
-    "settings.payflow_enabled": {
-      type: Boolean,
-      defaultValue: true
-    },
     "settings.client_id": {
       type: String,
       label: "API Client ID",
@@ -49,6 +16,36 @@ export const PaypalPackageConfig = new SimpleSchema([
       optional: true
     },
     "settings.payflow_mode": {
+      type: Boolean,
+      defaultValue: false
+    }
+  }
+]);
+
+export const PaypalExpressPackageConfig = new SimpleSchema([
+  PackageConfig, {
+    "settings.express_auth_and_capture": {
+      type: Boolean,
+      label: "Capture at time of Auth",
+      defaultValue: false
+    },
+    "settings.merchantId": {
+      type: String,
+      label: "Merchant ID"
+    },
+    "settings.username": {
+      type: String,
+      label: "Username"
+    },
+    "settings.password": {
+      type: String,
+      label: "Password"
+    },
+    "settings.signature": {
+      type: String,
+      label: "Signature"
+    },
+    "settings.express_mode": {
       type: Boolean,
       defaultValue: false
     }
