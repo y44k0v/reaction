@@ -17,20 +17,6 @@ Template.stripeSettings.helpers({
   }
 });
 
-Template.stripe.helpers({
-  packageData() {
-    return Packages.findOne({
-      name: "reaction-stripe",
-      shopId: Reaction.getShopId()
-    });
-  }
-});
-
-Template.stripe.events({
-  "click [data-event-action=showStripeSettings]"() {
-    Reaction.showActionView();
-  }
-});
 
 AutoForm.hooks({
   "stripe-update-form": {
