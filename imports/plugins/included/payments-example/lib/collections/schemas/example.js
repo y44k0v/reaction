@@ -9,8 +9,7 @@ export const ExamplePackageConfig = new SimpleSchema([
     },
     "settings.apiKey": {
       type: String,
-      label: "API Key",
-      optional: true
+      label: "API Key"
     }
   }
 ]);
