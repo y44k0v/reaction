@@ -6,7 +6,6 @@ import { Cart, Shops } from "/lib/collections";
 import { Braintree } from "../api/braintree";
 import { BraintreePayment } from "../../lib/collections/schemas";
 
-import "./braintree.html";
 
 Template.braintreePaymentForm.helpers({
   BraintreePayment() {
