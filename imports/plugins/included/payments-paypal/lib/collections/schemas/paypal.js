@@ -1,8 +1,7 @@
 import { SimpleSchema } from "meteor/aldeed:simple-schema";
-import { PackageConfig } from "/lib/collections/schemas/registry";
 
-export const PaypalProPackageConfig = new SimpleSchema([
-  PackageConfig, {
+export const PaypalProPackageConfig = new SimpleSchema(
+  {
     "settings.client_id": {
       type: String,
       label: "API Client ID",
@@ -20,10 +19,10 @@ export const PaypalProPackageConfig = new SimpleSchema([
       defaultValue: false
     }
   }
-]);
+);
 
-export const PaypalExpressPackageConfig = new SimpleSchema([
-  PackageConfig, {
+export const PaypalExpressPackageConfig = new SimpleSchema(
+  {
     "settings.express_auth_and_capture": {
       type: Boolean,
       label: "Capture at time of Auth",
@@ -50,7 +49,7 @@ export const PaypalExpressPackageConfig = new SimpleSchema([
       defaultValue: false
     }
   }
-]);
+);
 
 export const PaypalPayment = new SimpleSchema({
   payerName: {
