@@ -1,5 +1,4 @@
 import { SimpleSchema } from "meteor/aldeed:simple-schema";
-import { PackageConfig } from "/lib/collections/schemas/registry";
 /*
  *  Meteor.settings.stripe =
  *    mode: false  #sandbox
@@ -8,10 +7,11 @@ import { PackageConfig } from "/lib/collections/schemas/registry";
  */
 
 export const StripePackageConfig = new SimpleSchema([
-  PackageConfig, {
+  {
     "settings.mode": {
       type: Boolean,
-      defaultValue: false
+      defaultValue: false,
+      label: "Production Mode"
     },
     "settings.api_key": {
       type: String,
