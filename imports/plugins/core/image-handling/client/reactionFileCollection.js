@@ -4,9 +4,10 @@
 */
 import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
+import { ReactionFileHandler } from "../lib";
 
-export class FileCollection extends Mongo.Collection {
-  constructor(root = share.defaultRoot, options = {}) {
+export class ReactionFileCollection extends Mongo.Collection {
+  constructor(root = ReactionFileHandler._settings.defaultRoot, options = {}) {
     super(root + ".files", { idGeneration: "MONGO" });
     let optionsObj = options || {};
     this.root = root;
@@ -28,18 +29,20 @@ export class FileCollection extends Mongo.Collection {
 
     if (typeof this.root === "object") {
       optionsObj = this.root;
-      this.root = share.defaultRoot;
+      this.root = ReactionFileHandler._settings.defaultRoot;
     }
 
     this.base = this.root;
     this.baseURL = optionsObj.baseURL || `/gridfs/${this.root}`;
-    this.chunkSize = optionsObj.chunkSize || share.defaultChunkSize;
+    this.chunkSize = optionsObj.chunkSize || ReactionFileHandler._settings.defaultChunkSize;
 
      // This call sets up the optional support for resumable.js
      // See the resumable.coffee file for more information
-    if (optionsObj.resumable) {
-      share.setup_resumable.bind(this)();
-    }
+
+     // Resumeable turned off for now
+    // if (optionsObj.resumable) {
+    //   ReactionFileHandler.settings.setup_resumable.bind(this)();
+    // }
   }
 
   // remove works as-is. No modifications necessary so it currently goes straight to super
@@ -56,7 +59,7 @@ export class FileCollection extends Mongo.Collection {
       callbackFunction = undefined;
     }
 
-    const chunkFile = share.insert_func(file, this.chunkSize);
+    const chunkFile = ReactionFileHandler.settings.insertFunc(file, this.chunkSize);
     return super.insert(chunkFile, callback);
   }
 
@@ -80,7 +83,7 @@ export class FileCollection extends Mongo.Collection {
       throw err;
     }
 
-    if (share.reject_file_modifier(modifier)) {
+    if (ReactionFileHandler._helpers.rejectFileModifier(modifier)) {
       err = new Meteor.Error("Modifying gridFS read-only document elements is a very bad idea!");
       if (callbackFunction) {
         return callback(err);
