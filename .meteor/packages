@@ -52,12 +52,12 @@ aldeed:autoform
 aldeed:collection2
 aldeed:schema-index
 aldeed:template-extension
-cfs:filesystem
-cfs:graphicsmagick
-cfs:gridfs
-cfs:standard-packages
-cfs:storage-adapter
-cfs:ui
+# cfs:filesystem
+# cfs:graphicsmagick
+# cfs:gridfs
+# cfs:standard-packages
+# cfs:storage-adapter
+# cfs:ui
 dispatch:run-as-user
 jeremy:stripe
 jparker:gravatar
