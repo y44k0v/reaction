@@ -5,8 +5,6 @@
 import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
 
-// import { Logger } from "/client/api";
-
 export class FileCollection extends Mongo.Collection {
   constructor(root = share.defaultRoot, options = {}) {
     super(root + ".files", { idGeneration: "MONGO" });
